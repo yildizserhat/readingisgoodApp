@@ -1,6 +1,7 @@
 package com.yildizserhat.readingisgoodapp.controller;
 
 import com.yildizserhat.readingisgoodapp.dto.CustomerRequestDTO;
+import com.yildizserhat.readingisgoodapp.dto.ResponseDTO;
 import com.yildizserhat.readingisgoodapp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,6 @@ public class CustomerController {
     @ResponseBody
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerRequestDTO requestDTO) {
         customerService.registerCustomer(requestDTO);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(ResponseDTO.builder().success(true).message("Customer Registered.").build());
     }
 }

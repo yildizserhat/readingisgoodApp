@@ -2,6 +2,7 @@ package com.yildizserhat.readingisgoodapp.controller;
 
 import com.yildizserhat.readingisgoodapp.dto.PurchaseDTO;
 import com.yildizserhat.readingisgoodapp.dto.PurchaseResponseDTO;
+import com.yildizserhat.readingisgoodapp.dto.ResponseDTO;
 import com.yildizserhat.readingisgoodapp.service.CheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,6 @@ public class CheckoutController {
     @PostMapping("/purchase")
     public ResponseEntity<?> placeOrder(@Valid @RequestBody PurchaseDTO purchaseDTO) {
         PurchaseResponseDTO purchaseResponseDTO = checkoutService.placeOrder(purchaseDTO);
-        return ResponseEntity.ok(purchaseResponseDTO);
+        return ResponseEntity.ok(ResponseDTO.builder().object(purchaseResponseDTO).success(true).message("Your order received.").build());
     }
 }
